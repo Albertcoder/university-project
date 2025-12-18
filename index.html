@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIVER FUTURE | Quantum System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <nav class="glass-nav">
+        <div class="logo">UNIVER<span>FUTURE</span></div>
+        <div class="nav-control-panel">
+            <button class="nav-item" onclick="showSection('main')">Главная</button>
+            <button class="nav-item" onclick="showSection('catalog')">Реестр</button>
+            <button class="nav-item" onclick="showSection('favorites')">Избранное (<span id="fav-count">0</span>)</button>
+            <button class="nav-item theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="nav-divider"></div>
+            <button id="auth-btn-main" class="btn-neon" onclick="openModal('auth-modal')">ВХОД</button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="main-section">
+            <header class="hero">
+                <div class="top-ranking-zone">
+                    <p class="section-tag">PREMIUM ACCESS</p>
+                    <h2 class="top-title">ЭЛИТНЫЕ ПРОТОКОЛЫ (ТОП-3)</h2>
+                    <div class="top-3-grid" id="top-three"></div>
+                </div>
+
+                <div class="analyzer-wrapper">
+                    <div class="analyzer-box">
+                        <h3>КВАНТОВЫЙ АНАЛИЗ ШАНСОВ</h3>
+                        <div class="input-field-glow">
+                            <input type="number" id="userOrt" placeholder="Ваш балл ОРТ..." oninput="renderCards()">
+                            <div class="line-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div id="uni-cards" class="grid-container"></div>
+        </section>
+
+        <section id="favorites-section" style="display: none;">
+            <h2 class="neon-text" style="text-align: center; margin: 40px 0;">ВАШИ СОХРАНЕННЫЕ ВУЗЫ</h2>
+            <div id="fav-cards" class="grid-container"></div>
+        </section>
+
+        <section id="catalog-section" style="display: none;">
+            <div class="glass-table-container">
+                <table id="uni-table">
+                    <thead>
+                        <tr><th>ВУЗ</th><th>ГОРОД</th><th>ПОРОГ</th><th>СТОИМОСТЬ</th></tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="auth-modal" class="modal">
+        <div class="modal-content auth-box">
+            <span class="close" onclick="closeModal('auth-modal')">&times;</span>
+            <div class="auth-tabs">
+                <button id="tab-login" class="active" onclick="switchAuthTab('login')">ВХОД</button>
+                <button id="tab-reg" onclick="switchAuthTab('reg')">РЕГИСТРАЦИЯ</button>
+            </div>
+            <div id="form-login">
+                <input type="email" id="logEmail" placeholder="Email">
+                <input type="password" id="logPass" placeholder="Пароль">
+                <button class="btn-neon full-width" onclick="handleAuth('login')">ВОЙТИ</button>
+            </div>
+            <div id="form-reg" style="display: none;">
+                <input type="text" id="regName" placeholder="Имя">
+                <input type="email" id="regEmail" placeholder="Email">
+                <input type="password" id="regPass" placeholder="Пароль">
+                <button class="btn-neon full-width" onclick="handleAuth('reg')">РЕГИСТРАЦИЯ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="compare-bar" class="compare-float-bar" style="display: none;">
+        <span id="compare-info">0/2 Выбрано</span>
+        <button class="btn-neon-mini" onclick="startComparison()">СРАВНИТЬ</button>
+        <button onclick="clearCompare()" style="background:none; border:none; color:black; cursor:pointer;">✕</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
